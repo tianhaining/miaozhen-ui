@@ -1,6 +1,6 @@
 import MzButton from './components/mz-button';
 import MzRadio from './components/mz-radio';
-const components = [
+var components = [
   MzButton,
   MzRadio
 ];
@@ -16,10 +16,8 @@ if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
 };
 
-module.exports =  {
-  version: '1.0.1',
+export default {
+  version: '1.0.2',
   MzButton,
   MzRadio
 };
-
-module.exports.default = module.exports;
