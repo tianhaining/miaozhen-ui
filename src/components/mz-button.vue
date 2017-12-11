@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="">
-    <button type="button" name="button">我是一个按钮</button>
+    <button type="button" name="button" class="buttonStyle">秒针按钮</button>
   </div>
 </template>
 
@@ -9,5 +9,8 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="less">
+.buttonStyle {
+  color: red;
+}
 </style>
