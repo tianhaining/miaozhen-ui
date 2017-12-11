@@ -1,33 +1,25 @@
-import HelloWorld from './components/HelloWorld';
 import MzButton from './components/mz-button';
-var components = [
-  HelloWorld,
-  MzButton
+import MzRadio from './components/mz-radio';
+const components = [
+  MzButton,
+  MzRadio
 ];
+
 const install = function(Vue) {
-  components.map(function(component) {
+  components.map(component => {
     Vue.component(component.name, component);
   });
 };
 
-export default {
-  HelloWorld,
-  MzButton
+/* istanbul ignore if */
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue);
 };
 
-// // esri地图
-// import EsriMap from './map_module/map/esrimap';
+module.exports =  {
+  version: '1.0.0',
+  MzButton,
+  MzRadio
+};
 
-// const components = [
-//   EsriMap
-// ];
-
-// function install(Vue, _) {
-//   components.forEach(component => {
-//     Vue.component(component.name, component);
-//   });
-// };
-// export default {
-//   EsriMap,
-//   install
-// };
+module.exports.default = module.exports;

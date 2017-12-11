@@ -6,6 +6,12 @@
 
 <script>
 export default {
+  name: 'MzButton',
+  data () {
+    return {
+
+    }
+  }
 }
 </script>
 
