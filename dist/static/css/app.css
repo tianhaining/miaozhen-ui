@@ -1,1 +1,1 @@
-.buttonStyle{color:red}
+.mz-button{padding:.5rem 1rem;cursor:pointer}.mz-button--primary{background-color:#eb3332;color:#fff;border:1px solid #eb3332;outline:none}.mz-button--primary:hover{background-color:#ff4e4e;color:#fff;border:1px solid #ff4e4e;outline:none}.mz-button--primary:active{background-color:#d61918;color:#fff;border:1px solid #d61918;outline:none}
