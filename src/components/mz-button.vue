@@ -9,7 +9,8 @@
       {
         'is-disabled': disabled,
         'is-loading': loading,
-        'is-plain': plain
+        'is-plain': plain,
+        'is-round': round
       }
     ]"
   >
@@ -20,6 +21,7 @@
 </template>
 
 <script>
+import '../theme-default/icon.css'
 export default {
   name: 'MzButton',
   data () {
@@ -44,6 +46,7 @@ export default {
     loading: Boolean,
     disabled: Boolean,
     plain: Boolean,
+    round: Boolean,
     autofocus: Boolean
   },
   methods: {
@@ -63,9 +66,10 @@ export default {
   color: @fontColor;
   border: @border;
   outline: none;
+  border-radius: 4px;
 }
 .mz-button {
-  padding: .5rem 1rem;
+  padding: 8px 16px;
   cursor: pointer;
   &--primary {
     .button-style(@color, white, 1px solid @color)
@@ -76,5 +80,52 @@ export default {
   &--primary:active {
     .button-style(@activeColor, white, 1px solid @activeColor)
   }
+
+  &--secondary {
+    .button-style(white, #b0b2b8, 1px solid #e7e7e9)
+  }
+  &--secondary:hover {
+    .button-style(white, @hoverColor, 1px solid @hoverColor)
+  }
+  &--secondary:active {
+    .button-style(white, @activeColor, 1px solid @activeColor)
+  }
+
+  &--dashed {
+    .button-style(white, #b0b2b8, 1px dashed #e7e7e9);
+  }
+  &--dashed:hover {
+    .button-style(white, @hoverColor, 1px dashed @hoverColor)
+  }
+  &--dashed:active {
+    .button-style(white, @activeColor, 1px dashed @activeColor)
+  }
+
+  &--text {
+    .button-style(white, @color, 0px solid @color)
+  }
+  &--text:hover {
+    .button-style(white, @hoverColor, 0px solid @hoverColor)
+  }
+  &--text:active {
+    .button-style(white, @activeColor, 0px solid @activeColor)
+  }
+
+  &--medium {
+    padding: 7px 15px;
+    font-size: 12px;
+  }
+
+  &--small {
+    padding: 6px 14px;
+    font-size: 11px;
+  }
+}
+.mz-button.is-round {
+  border-radius: 20px;
+}
+.mz-button.is-disabled {
+  cursor: not-allowed;
+  .button-style(#e2e1e1, #b0b2b8, 1px solid #e2e1e1)
 }
 </style>
