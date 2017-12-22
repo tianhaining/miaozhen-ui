@@ -69,6 +69,9 @@ export default {
   border-radius: 4px;
 }
 .mz-button {
+  font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
+  font-weight: 400;
+  font-size: 14px;
   padding: 8px 16px;
   cursor: pointer;
   &--primary {
