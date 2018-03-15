@@ -1,17 +1,38 @@
 <template>
   <li class="mz-menu-item"
-    :style="paddingStyle"
+    :style="[paddingStyle, itemStyle, { backgroundColor }]"
     @click="handleClick"
+    @mouseenter="onMouseEnter"
+    @focus="onMouseEnter"
+    @blur="onMouseLeave"
+    @mouseleave="onMouseLeave"
     :class="{
       'is-active': active,
       'is-disabled': disabled
-    }">
-    <slot></slot>
+    }"
+    role="menuitem"
+    tabindex="-1"
+  >
+    <mz-tooltip
+      v-if="parentMenu.$options.componentName === 'MzMenu' && rootMenu.collapse"
+      effect="dark"
+      placement="right">
+      <div slot="content"><slot name="title"></slot></div>
+      <div style="position: absolute;left: 0;top: 0;height: 100%;width: 100%;display: inline-block;box-sizing: border-box;padding: 0 20px;">
+        <slot></slot>
+      </div>
+    </mz-tooltip>
+    <template v-else>
+      <slot></slot>
+      <slot name="title"></slot>
+    </template>
   </li>
 </template>
 <script>
   import Menu from './menu-mixin';
+  import MzTooltip from '@/components/tooltip/main';
   import Emitter from '@/mixins/emitter';
+
   export default {
     name: 'MzMenuItem',
 
@@ -19,13 +40,15 @@
 
     mixins: [Menu, Emitter],
 
+    components: { MzTooltip },
+
     props: {
       index: {
         type: String,
         required: true
       },
       route: {
-        type: Object,
+        type: [String, Object],
         required: false
       },
       disabled: {
@@ -35,13 +58,52 @@
     },
     computed: {
       active() {
-        return this.index === this.rootMenu.activedIndex;
+        return this.index === this.rootMenu.activeIndex;
+      },
+      hoverBackground() {
+        return this.rootMenu.hoverBackground;
+      },
+      backgroundColor() {
+        return this.rootMenu.backgroundColor || '';
+      },
+      activeTextColor() {
+        return this.rootMenu.activeTextColor || '';
+      },
+      textColor() {
+        return this.rootMenu.textColor || '';
+      },
+      mode() {
+        return this.rootMenu.mode;
+      },
+      itemStyle() {
+        const style = {
+          color: this.active ? this.activeTextColor : this.textColor
+        };
+        if (this.mode === 'horizontal' && !this.isNested) {
+          style.borderBottomColor = this.active
+            ? (this.rootMenu.activeTextColor ? this.activeTextColor : '')
+            : 'transparent';
+        }
+        return style;
+      },
+      isNested() {
+        return this.parentMenu !== this.rootMenu;
       }
     },
     methods: {
+      onMouseEnter() {
+        if (this.mode === 'horizontal' && !this.rootMenu.backgroundColor) return;
+        this.$el.style.backgroundColor = this.hoverBackground;
+      },
+      onMouseLeave() {
+        if (this.mode === 'horizontal' && !this.rootMenu.backgroundColor) return;
+        this.$el.style.backgroundColor = this.backgroundColor;
+      },
       handleClick() {
-        this.dispatch('MzMenu', 'item-click', this);
-        this.$emit('click', this);
+        if (!this.disabled) {
+          this.dispatch('MzMenu', 'item-click', this);
+          this.$emit('click', this);
+        };
       }
     },
     created() {

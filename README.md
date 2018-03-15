@@ -1,20 +1,21 @@
-**安装**
+# miaozhen-fe
 
-npm i miaozhen-ui --S
+> miaozhen-fe
 
-**使用**
+## Build Setup
 
-在mian.js中
+``` bash
+# install dependencies
+npm install
 
-import MiaozhenUI from 'miaozhen-ui';
+# serve with hot reload at localhost:8080
+npm run dev
 
-import 'miaozhen-ui/dist/static/css/app.css';
+# build for production with minification
+npm run build
 
-Vue.use(MiaozhenUI);
+# build for production and view the bundle analyzer report
+npm run build --report
+```
 
-**例：**
-
-组件的使用
-直接在template标签内使用
-
-<mz-button></mz-button>
+For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

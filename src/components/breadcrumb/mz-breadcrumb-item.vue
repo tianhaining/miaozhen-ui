@@ -8,7 +8,6 @@
   </span>
 </template>
 <script>
-// import '../theme-default/icon.css'
   export default {
     name: 'MzBreadcrumbItem',
     props: {

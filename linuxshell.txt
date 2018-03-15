@@ -1,0 +1,60 @@
+man:
+查看命令的帮助文档
+[command] --help
+eg：
+man tar
+tar --help
+
+tar:
+压缩和解压
+压缩：
+tar zcvf fe.tar.gz fe
+
+解压：
+tar zxvf fe.tar.gz
+如果要解压到某个目录，
+tar zxvf fe.tar.gz -C /home/test/
+
+scp:
+从跳板机上传文件到服务器
+scp -l 10240 fe.tar.gz root@3137.mzhen.cn:/home/tianhn
+
+ssh:
+ssh root@3137.mzhen.cn
+
+rm:
+删除命令
+eg:
+rm -rf fe.tar.gz
+
+tail:
+监控日志
+eg:
+tail -f logs/catalina.out
+
+ps：
+查看当前运行的进程
+ps -ef | grep tomcat
+
+
+/home/tianhn
+/home/work/apache-tomcat-8.0.28/webapps/fe
+
+
+3137上的部署目录:
+/home/work/ford/...
+
+dbi---对应于dbi项目
+api---对应于dbi-api项目
+other---对应api中中间文件的存放
+log---dbi和api项目的日志目录
+
+
+scp -l 10240 dbi-0.0.1-SNAPSHOT.war root@3137.mzhen.cn:/home/tianhn
+
+复制文件到指定目录：
+mv dbi-0.0.1-SNAPSHOT.war /home/work/ford/dbi/
+
+查询当前正在执行的项目:ps -ef|grep api
+杀掉正在执行的项目：kill -9 
+看实时日志：tail -f /home/work/logs
